@@ -1,0 +1,32 @@
+extends ./base.jade
+block append style
+    link(rel="stylesheet", type="text/css", href="/assets/style.css")
+block body
+  nav
+    a(href="/login")
+      img#logo(src="/assets/img/face.png", alt="face logo")
+    .navlink
+      a(href="/logout") Log out
+  
+  section#makeDomo
+    form#domoForm(class="domoForm", name="domoForm", action="/maker", method="POST")
+      label(for="name") Name: 
+      input#domoName(type="text", name="name", placeholder="Domo Name")
+      label(for="age") Age: 
+      input#domoAge(type="text", name="age", placeholder="Domo Age")
+      label(for="power") Power: 
+      input#domoAge(type="text", name="power", placeholder="Domo Power")
+      input(type="hidden", name="_csrf", value="#{csrfToken}")
+      a#makeDomoSubmit(class="makeDomoSubmit", href="#") Make Domo
+  
+  section#secondNav
+    a.options(href="/display") My Domos
+    a.options(href="/profile") My Profile
+  
+  #domoMessage
+    img#speech(src="/assets/img/speech.png", alt="speech box")
+    h3
+      span#errorMessage
+    img#domo(src="assets/img/domo.png", alt="domo")
+block scripts
+        script(src="/assets/maker.js")
